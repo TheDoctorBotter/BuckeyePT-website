@@ -9,9 +9,9 @@ import { Testimonials } from './components/Testimonials';
 import { Disclaimers } from './components/Disclaimers';
 import { Footer } from './components/Footer';
 import { MobileCTABar } from './components/MobileCTABar';
-import { PrivacyPolicy, TermsOfUse, Disclaimer, Accessibility, MeetTheTherapist } from './components/pages';
+import { PrivacyPolicy, TermsOfUse, Disclaimer, Accessibility, MeetTheTherapist, SmsTerms } from './components/pages';
 
-type Page = 'home' | 'privacy' | 'terms' | 'disclaimer' | 'accessibility' | 'meet-therapist';
+type Page = 'home' | 'privacy' | 'terms' | 'disclaimer' | 'accessibility' | 'meet-therapist' | 'sms-terms';
 
 const pathToPage: Record<string, Page> = {
   '/': 'home',
@@ -20,6 +20,7 @@ const pathToPage: Record<string, Page> = {
   '/disclaimer': 'disclaimer',
   '/accessibility': 'accessibility',
   '/meet-therapist': 'meet-therapist',
+  '/sms-terms': 'sms-terms',
 };
 
 const pageToPath: Record<Page, string> = {
@@ -29,6 +30,7 @@ const pageToPath: Record<Page, string> = {
   'disclaimer': '/disclaimer',
   'accessibility': '/accessibility',
   'meet-therapist': '/meet-therapist',
+  'sms-terms': '/sms-terms',
 };
 
 const normalizePath = (path: string) => {
@@ -111,6 +113,18 @@ function App() {
         <Header onNavigate={handleNavigate} />
         <main>
           <Accessibility onBack={handleBackToHome} />
+        </main>
+        <Footer onNavigate={handleNavigate} />
+      </div>
+    );
+  }
+
+  if (currentPage === 'sms-terms') {
+    return (
+      <div className="min-h-screen bg-white">
+        <Header onNavigate={handleNavigate} />
+        <main>
+          <SmsTerms onBack={handleBackToHome} />
         </main>
         <Footer onNavigate={handleNavigate} />
       </div>

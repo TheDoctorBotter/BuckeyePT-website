@@ -129,6 +129,13 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 Terms of Use
               </a>
               <a
+                href="/sms-terms"
+                onClick={handleLinkClick('sms-terms')}
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                SMS Terms
+              </a>
+              <a
                 href="/disclaimer"
                 onClick={handleLinkClick('disclaimer')}
                 className="text-gray-400 hover:text-white transition-colors"
