@@ -1,7 +1,11 @@
 import React from 'react';
 import { Stethoscope, Mail, Phone, MapPin, Shield, FileText } from 'lucide-react';
 
-export const Footer = () => {
+interface FooterProps {
+  onNavigate?: (page: 'privacy' | 'terms') => void;
+}
+
+export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   return (
     <footer id="contact" className="bg-gray-900 text-white py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -81,8 +85,19 @@ export const Footer = () => {
               <a href="#disclaimers" className="text-gray-400 hover:text-white text-sm transition-colors">
                 Medical Disclaimers
               </a>
-              <a href="#disclaimers" className="text-gray-400 hover:text-white text-sm transition-colors">
+              <a
+                href="/privacy"
+                onClick={(e) => { e.preventDefault(); onNavigate?.('privacy'); }}
+                className="text-gray-400 hover:text-white text-sm transition-colors"
+              >
                 Privacy Policy
+              </a>
+              <a
+                href="/terms"
+                onClick={(e) => { e.preventDefault(); onNavigate?.('terms'); }}
+                className="text-gray-400 hover:text-white text-sm transition-colors"
+              >
+                Terms &amp; Conditions
               </a>
             </div>
           </div>
