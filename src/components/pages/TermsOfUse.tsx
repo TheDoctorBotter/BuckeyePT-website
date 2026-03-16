@@ -6,28 +6,28 @@ interface TermsOfUseProps {
 
 export const TermsOfUse: React.FC<TermsOfUseProps> = ({ onBack }) => {
   return (
-    <div className="py-16 bg-white">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="section-padding bg-white">
+      <div className="container-main">
         <button
           onClick={onBack}
-          className="text-[#BB0000] hover:text-[#990000] font-medium mb-8 inline-flex items-center"
+          className="text-scarlet hover:text-scarlet-600 font-medium mb-8 inline-flex items-center"
         >
-          &larr; Back to Home
+          ← Back to Home
         </button>
 
-        <h1 className="text-3xl font-bold text-gray-900 mb-4">Terms &amp; Conditions</h1>
-        <p className="text-gray-600 mb-8">Last updated: March 2026</p>
+        <h1 className="mb-8">Terms of Use</h1>
+        <p className="text-gray-600 mb-8">Last updated: January 2026</p>
 
-        <div className="prose prose-gray max-w-none space-y-6">
+        <div className="prose prose-gray max-w-none">
           <h2 className="text-xl font-semibold mt-8 mb-4">1. Acceptance of Terms</h2>
           <p className="text-gray-600 mb-4">
             By accessing or using the Buckeye Physical Therapy website, you agree to be bound by these
-            Terms and Conditions. If you do not agree to these terms, please do not use our website.
+            Terms of Use. If you do not agree to these terms, please do not use our website.
           </p>
 
           <h2 className="text-xl font-semibold mt-8 mb-4">2. Services Description</h2>
           <p className="text-gray-600 mb-4">
-            This website provides information about Buckeye Physical Therapy PLLC&apos;s physical therapy
+            This website provides information about Buckeye Physical Therapy PLLC's physical therapy
             services. The content is for informational purposes only and does not constitute medical advice.
           </p>
 
@@ -61,7 +61,7 @@ export const TermsOfUse: React.FC<TermsOfUseProps> = ({ onBack }) => {
 
           <h2 className="text-xl font-semibold mt-8 mb-4">7. Changes to Terms</h2>
           <p className="text-gray-600 mb-4">
-            We reserve the right to modify these Terms and Conditions at any time. Your continued use of the
+            We reserve the right to modify these Terms of Use at any time. Your continued use of the
             website after changes constitutes acceptance of the modified terms.
           </p>
 
@@ -124,8 +124,7 @@ export const TermsOfUse: React.FC<TermsOfUseProps> = ({ onBack }) => {
           <h3 className="text-lg font-semibold mt-6 mb-3">Privacy</h3>
           <p className="text-gray-600 mb-4">
             Your mobile phone number and information will not be shared with third parties for marketing purposes.
-            For more information, please see our{' '}
-            <a href="/privacy" className="text-[#BB0000] hover:text-[#990000] underline">Privacy Policy</a>.
+            For more information, please see our <a href="/privacy" className="text-scarlet hover:text-scarlet-600 underline">Privacy Policy</a>.
           </p>
 
           <h3 className="text-lg font-semibold mt-6 mb-3">Consent Not Required for Treatment</h3>
@@ -136,13 +135,13 @@ export const TermsOfUse: React.FC<TermsOfUseProps> = ({ onBack }) => {
 
           <h2 className="text-xl font-semibold mt-8 mb-4">9. Governing Law</h2>
           <p className="text-gray-600 mb-4">
-            These Terms and Conditions shall be governed by the laws of the State of Texas without regard
+            These Terms of Use shall be governed by the laws of the State of Texas without regard
             to its conflict of law provisions.
           </p>
 
           <h2 className="text-xl font-semibold mt-8 mb-4">10. Contact</h2>
           <p className="text-gray-600 mb-4">
-            For questions about these Terms and Conditions, contact us at:
+            For questions about these Terms of Use, contact us at:
           </p>
           <p className="text-gray-600 mb-4">
             Buckeye Physical Therapy PLLC<br />
