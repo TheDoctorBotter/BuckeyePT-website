@@ -17,7 +17,7 @@ export class EmailService {
   private fromEmail: string;
   private fromName: string;
 
-  constructor(apiKey: string, fromEmail: string = 'noreply@buckeyephysicaltherapy.com', fromName: string = 'Buckeye Physical Therapy') {
+  constructor(apiKey: string, fromEmail: string = 'noreply@buckeyephysicaltherapy.org', fromName: string = 'Buckeye Physical Therapy') {
     this.resend = new Resend(apiKey);
     this.fromEmail = fromEmail;
     this.fromName = fromName;
