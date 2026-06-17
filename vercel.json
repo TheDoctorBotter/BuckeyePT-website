@@ -1,9 +1,8 @@
 {
-  "cleanUrls": true,
   "rewrites": [
-    {
-      "source": "/((?!sms-terms|privacy|terms|assets/).*)",
-      "destination": "/index.html"
-    }
+    { "source": "/sms-terms", "destination": "/sms-terms.html" },
+    { "source": "/privacy", "destination": "/privacy.html" },
+    { "source": "/terms", "destination": "/terms.html" },
+    { "source": "/((?!sms-terms|privacy|terms|assets/|.*\\.[a-zA-Z0-9]+$).*)", "destination": "/index.html" }
   ]
 }
