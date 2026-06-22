@@ -29,7 +29,7 @@
     schedule, confirm, and remind you about your physical therapy appointments and for care-related
     follow-up. We do not send marketing or promotional texts.</p>
 
-  <form id="optin" action="https://formspree.io/f/manual" method="POST">
+  <form id="optin" method="POST">
     <label for="name">Your name
       <input type="text" id="name" name="name" autocomplete="name" />
     </label>
@@ -52,7 +52,8 @@
     <button type="submit">Sign me up for text messages</button>
   </form>
 
-  <div class="ok" id="ok">✓ Thank you — your text-message opt-in has been received. You'll get a confirmation message.</div>
+  <div class="ok" id="ok">✓ Thank you — your text-message opt-in has been received. You'll get a confirmation text shortly.</div>
+  <div id="err" style="display:none;background:#fdecec;border:1px solid #f5c2c2;border-radius:8px;padding:14px;margin-top:18px;color:#9b1c1c"></div>
 
   <div class="disclosures">
     <strong>Message details:</strong> Appointment scheduling, confirmations, reminders, and care follow-up only.
@@ -62,18 +63,42 @@
   </div>
 
   <h2>Other ways to opt in</h2>
-  <p style="font-size:14px;color:#555">You may also opt in <strong>in person</strong> (verbal consent at your
-    evaluation or appointment) or by <strong>signing a paper intake form</strong> that includes SMS consent.
-    Images of paper opt-in forms are available upon request.</p>
+  <p style="font-size:14px;color:#555">You may also opt in <strong>in person</strong> by giving verbal consent
+    to our staff at your evaluation or appointment. Our staff records your verbal "yes" along with the mobile
+    number where you'd like to receive appointment text messages.</p>
 
   <script>
-    // Lightweight client confirmation; the static form + consent language above
-    // is the verifiable opt-in. Replace the action with your real form handler.
-    document.getElementById('optin').addEventListener('submit', function (e) {
+    // Real opt-in: POST to the Buckeye Scheduler API, which records the consent
+    // (auditable) and sends a confirmation SMS via Twilio.
+    var OPTIN_ENDPOINT = 'https://caseload.buckeyephysicaltherapy.org/api/sms-optin';
+    var form = document.getElementById('optin');
+    var okBox = document.getElementById('ok');
+    var errBox = document.getElementById('err');
+    form.addEventListener('submit', async function (e) {
       e.preventDefault();
       if (!document.getElementById('consent').checked) return;
-      document.getElementById('optin').style.display = 'none';
-      document.getElementById('ok').style.display = 'block';
+      errBox.style.display = 'none';
+      var btn = form.querySelector('button[type=submit]');
+      btn.disabled = true; btn.textContent = 'Submitting…';
+      try {
+        var res = await fetch(OPTIN_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: document.getElementById('name').value,
+            phone: document.getElementById('phone').value,
+            consent: 'yes',
+          }),
+        });
+        var data = await res.json().catch(function () { return {}; });
+        if (!res.ok) throw new Error(data.error || 'Something went wrong. Please try again.');
+        form.style.display = 'none';
+        okBox.style.display = 'block';
+      } catch (err) {
+        errBox.textContent = '⚠️ ' + err.message;
+        errBox.style.display = 'block';
+        btn.disabled = false; btn.textContent = 'Sign me up for text messages';
+      }
     });
   </script>
 </body>
