@@ -4,17 +4,19 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="index, follow" />
-  <title>Text Message Sign-Up | Buckeye Physical Therapy</title>
-  <meta name="description" content="Sign up to receive appointment text messages from Buckeye Physical Therapy, PLLC. Opt in with your phone number and consent. Reply STOP to opt out. Edinburg, TX." />
+  <title>Request an Appointment | Buckeye Physical Therapy</title>
+  <meta name="description" content="Request a physical therapy appointment with Buckeye Physical Therapy, PLLC in Edinburg, TX. Optionally opt in to appointment text reminders. Reply STOP to opt out anytime." />
   <link rel="canonical" href="https://www.buckeyephysicaltherapy.org/sms-signup" />
   <style>
     body{font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:#1f2933;line-height:1.6;max-width:680px;margin:0 auto;padding:32px 20px}
     h1{font-size:28px;margin-bottom:4px}h2{font-size:18px;margin-top:24px}
     .muted{color:#6b7280;font-size:14px}a{color:#bb0000}
     label{display:block;font-weight:600;margin-top:14px}
-    input[type=text],input[type=tel]{width:100%;padding:10px;margin-top:4px;box-sizing:border-box;font-size:16px;border:1px solid #ccc;border-radius:6px}
+    input[type=text],input[type=tel],textarea{width:100%;padding:10px;margin-top:4px;box-sizing:border-box;font-size:16px;border:1px solid #ccc;border-radius:6px}
+    textarea{min-height:80px;resize:vertical}
     .consent{display:flex;gap:10px;align-items:flex-start;margin-top:18px;background:#f8f8f8;border:1px solid #e2e2e2;border-radius:8px;padding:14px}
     .consent input{margin-top:4px}
+    .optional{display:inline-block;font-size:12px;font-weight:700;color:#6b7280;background:#eef0f2;border-radius:999px;padding:2px 9px;margin-left:6px;text-transform:uppercase;letter-spacing:.4px}
     button{margin-top:20px;background:#bb0000;color:#fff;border:none;border-radius:8px;padding:12px 22px;font-size:16px;cursor:pointer}
     .disclosures{font-size:13px;color:#555;background:#fff8f8;border-left:4px solid #bb0000;padding:12px 14px;margin-top:18px}
     .ok{display:none;background:#eef7ef;border:1px solid #cfe8d4;border-radius:8px;padding:14px;margin-top:18px;color:#1a7f37}
@@ -22,61 +24,67 @@
 </head>
 <body>
   <p><a href="/">&larr; Back to Home</a></p>
-  <h1>Sign Up for Appointment Text Messages</h1>
+  <h1>Request an Appointment</h1>
   <p class="muted">Buckeye Physical Therapy, PLLC &middot; Edinburg, TX &middot; (956) 476-5310</p>
 
-  <p>Use this form to opt in to text messages from Buckeye Physical Therapy. We use SMS only to
-    schedule, confirm, and remind you about your physical therapy appointments and for care-related
-    follow-up. We do not send marketing or promotional texts.</p>
+  <p>Tell us how to reach you and we'll get back to you to schedule your physical therapy visit.
+    You can <strong>optionally</strong> choose to receive appointment text reminders &mdash; but you do
+    not have to agree to texts to request an appointment.</p>
 
   <form id="optin" method="POST">
     <label for="name">Your name
       <input type="text" id="name" name="name" autocomplete="name" />
     </label>
-    <label for="phone">Mobile phone number
+    <label for="phone">Phone number
       <input type="tel" id="phone" name="phone" placeholder="(956) 555-1234" autocomplete="tel" required />
     </label>
+    <label for="message">How can we help? <span style="font-weight:400;color:#6b7280">(optional)</span>
+      <textarea id="message" name="message" placeholder="Briefly describe what you need help with."></textarea>
+    </label>
 
-    <!-- REQUIRED: consent checkbox, UNCHECKED by default; active consent. -->
+    <!-- OPTIONAL SMS consent. Unchecked by default; the form submits with or
+         without it. Consent to texts is never required to use this form. -->
     <div class="consent">
-      <input type="checkbox" id="consent" name="consent" value="yes" required />
+      <input type="checkbox" id="consent" name="consent" value="yes" />
       <label for="consent" style="font-weight:400;margin:0">
-        By checking this box, I agree to receive SMS text messages from Buckeye Physical Therapy, PLLC
+        <strong>Optional:</strong> I agree to receive SMS text messages from Buckeye Physical Therapy, PLLC
         about appointment scheduling, confirmations, reminders, and care-related follow-up at the phone
-        number provided. Consent is not a condition of any purchase or service. Message frequency varies
-        (up to 4 messages per month). Message and data rates may apply. Reply STOP to opt out at any time,
-        or HELP for help. See our <a href="/sms-terms">SMS Terms</a> and <a href="/privacy">Privacy Policy</a>.
+        number provided. <strong>Consent is optional and is not a condition of any service or appointment.</strong>
+        Message frequency varies (up to 4 messages per month). Message and data rates may apply. Reply STOP to
+        opt out at any time, or HELP for help. See our <a href="/sms-terms">SMS Terms</a> and
+        <a href="/privacy">Privacy Policy</a>.
       </label>
     </div>
 
-    <button type="submit">Sign me up for text messages</button>
+    <button type="submit">Submit request</button>
   </form>
 
-  <div class="ok" id="ok">✓ Thank you — your text-message opt-in has been received. You'll get a confirmation text shortly.</div>
+  <div class="ok" id="ok">✓ Thank you — we've received your request and will be in touch. If you opted in to text messages, you'll get a confirmation text shortly.</div>
   <div id="err" style="display:none;background:#fdecec;border:1px solid #f5c2c2;border-radius:8px;padding:14px;margin-top:18px;color:#9b1c1c"></div>
 
   <div class="disclosures">
-    <strong>Message details:</strong> Appointment scheduling, confirmations, reminders, and care follow-up only.
-    Message frequency varies (up to 4/month). Message and data rates may apply. Reply <strong>STOP</strong> to
-    unsubscribe, <strong>HELP</strong> for help. Your mobile opt-in information is never shared or sold to third
-    parties for marketing.
+    <strong>About appointment texts (optional):</strong> If you opt in, we use SMS only for appointment
+    scheduling, confirmations, reminders, and care follow-up &mdash; never marketing. Message frequency varies
+    (up to 4/month). Message and data rates may apply. Reply <strong>STOP</strong> to unsubscribe,
+    <strong>HELP</strong> for help. Your mobile opt-in information is never shared or sold to third parties.
   </div>
 
-  <h2>Other ways to opt in</h2>
-  <p style="font-size:14px;color:#555">You may also opt in <strong>in person</strong> by giving verbal consent
-    to our staff at your evaluation or appointment. Our staff records your verbal "yes" along with the mobile
-    number where you'd like to receive appointment text messages.</p>
+  <h2>Other ways to opt in to texts</h2>
+  <p style="font-size:14px;color:#555">You may also opt in to appointment texts <strong>in person</strong> by
+    giving verbal consent to our staff at your evaluation or appointment. Our staff records your verbal "yes"
+    along with the mobile number where you'd like to receive appointment text messages. Opting in to texts is
+    always optional.</p>
 
   <script>
-    // Real opt-in: POST to the Buckeye Scheduler API, which records the consent
-    // (auditable) and sends a confirmation SMS via Twilio.
+    // Submit the appointment request to the Buckeye Scheduler API. If the visitor
+    // checked the OPTIONAL consent box, the API records the SMS opt-in and sends a
+    // confirmation text; otherwise it just accepts the request (no texts).
     var OPTIN_ENDPOINT = 'https://caseload.buckeyephysicaltherapy.org/api/sms-optin';
     var form = document.getElementById('optin');
     var okBox = document.getElementById('ok');
     var errBox = document.getElementById('err');
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
-      if (!document.getElementById('consent').checked) return;
       errBox.style.display = 'none';
       var btn = form.querySelector('button[type=submit]');
       btn.disabled = true; btn.textContent = 'Submitting…';
@@ -87,7 +95,8 @@
           body: JSON.stringify({
             name: document.getElementById('name').value,
             phone: document.getElementById('phone').value,
-            consent: 'yes',
+            message: document.getElementById('message').value,
+            consent: document.getElementById('consent').checked ? 'yes' : 'no',
           }),
         });
         var data = await res.json().catch(function () { return {}; });
@@ -97,7 +106,7 @@
       } catch (err) {
         errBox.textContent = '⚠️ ' + err.message;
         errBox.style.display = 'block';
-        btn.disabled = false; btn.textContent = 'Sign me up for text messages';
+        btn.disabled = false; btn.textContent = 'Submit request';
       }
     });
   </script>
